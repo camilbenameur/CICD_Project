@@ -1,0 +1,18 @@
+name: Build main.py
+
+on:
+  push:
+    paths:
+      - main.py
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Build main.py
+      run: |
+        python main.py
