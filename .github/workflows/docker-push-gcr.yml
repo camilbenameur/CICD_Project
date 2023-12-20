@@ -1,8 +1,9 @@
 name: Docker push GCR
 
 on:
+  workflow_dispatch:
   push:
-    branches:
+    tags:
       - '*'
 
 jobs:
