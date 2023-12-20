@@ -1,7 +1,3 @@
-# Ce workflow GitHub Action construit une image Docker à partir du fichier Dockerfile
-# lorsqu'il est déclenché manuellement. L'image est configurée pour prendre en charge
-# les plates-formes Linux/amd64 et Linux/arm64.
-
 name: Build Docker Image
 
 on:
@@ -22,7 +18,7 @@ jobs:
       run: |
         docker buildx create --use
         docker buildx inspect --bootstrap
-        docker buildx build --platform linux/amd64,linux/arm64 -t camilbenameur/CICD_Project:latest .
+        docker buildx build --platform linux/amd64,linux/arm64 -t camilbenameur/cicd_project:latest .
       env:
         DOCKER_CLI_AGGREGATE: 1
         DOCKER_CLI_EXPERIMENTAL: enabled
