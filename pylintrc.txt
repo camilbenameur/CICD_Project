@@ -1,0 +1,3 @@
+[MESSAGES CONTROL]
+# Disable certain messages
+disable=C0303,C0114,C0116,W0703,C0103,C0411
