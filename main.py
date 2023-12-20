@@ -111,12 +111,12 @@ def get_total_time(participant):
         total_time_month = 0
 
         for event in events_db:
-            if participant in event['participants']:
+            if participant in event['participants'] and len(event['participants']) > 1:
                 event_timestamp = event['timestamp']
                 event_duration = event['duration']
 
-                time_difference = event_timestamp - current_timestamp 
-                
+                time_difference =   current_timestamp - event_timestamp
+                print(f"Event Timestamp: {event_timestamp}, Time Difference: {time_difference} seconds")
 
                 if time_difference <= 86400: 
                     total_time_day += event_duration
