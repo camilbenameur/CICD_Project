@@ -31,7 +31,4 @@ jobs:
           file: Dockerfile
           tags: europe-west1-docker.pkg.dev/esirem/esirem/test:${{ github.ref_name }}
           context: .
-          paths:
-            include:
-              - main.py
           push: true
