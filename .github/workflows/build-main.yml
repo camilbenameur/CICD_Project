@@ -1,4 +1,4 @@
-name: Build main.py
+name: Build main
 
 on:
   push:
