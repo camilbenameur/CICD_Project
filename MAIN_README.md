@@ -2,6 +2,13 @@
 - [Camil BENAMEUR](https://github.com/camilbenameur)
 - [Lionel NGUYEN](https://github.com/LionelKhoi)
 
+## Workflow Status
+
+[![Build Image](https://github.com/camilbenameur/cicd_project/actions/workflows/build-image.yml/badge.svg)](https://github.com/camilbenameur/cicd_project/actions/workflows/build-image.yml)
+[![Build Main](https://github.com/camilbenameur/cicd_project/actions/workflows/build-main.yml/badge.svg)](https://github.com/camilbenameur/cicd_project/actions/workflows/build-main.yml)
+[![Docker Push DockerHub](https://github.com/camilbenameur/cicd_project/actions/workflows/docker-push-dockerhub.yml/badge.svg)](https://github.com/camilbenameur/cicd_project/actions/workflows/docker-push-dockerhub.yml)
+[![Docker Push GCR](https://github.com/camilbenameur/cicd_project/actions/workflows/docker-push-gcr.yml/badge.svg)](https://github.com/camilbenameur/cicd_project/actions/workflows/docker-push-gcr.yml)
+
 # Summary: ESIREM - 4A - ILC CI/CD Project
 
 ## Project Deadline
