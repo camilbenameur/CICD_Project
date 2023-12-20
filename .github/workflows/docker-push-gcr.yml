@@ -1,13 +1,16 @@
 name: Docker push GCR
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - '*'
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -25,10 +28,14 @@ jobs:
       - name: Configure Docker using GCLOUD
         run: gcloud auth configure-docker europe-west1-docker.pkg.dev
 
+      - name: Convert repository name to lowercase
+        id: to_lower
+        run: echo "::set-output name=repository::${{ github.repository | lower }}"
+
       - name: Build and push Docker images
         uses: docker/build-push-action@v3.3.1
         with:
           file: Dockerfile
-          tags: europe-west1-docker.pkg.dev/esirem/esirem/4A_ilc/benameur_nguyen/${{ github.ref_name }}
+          tags: europe-west1-docker.pkg.dev/esirem/esirem/4A_ilc/benameur_nguyen/${{ steps.to_lower.outputs.repository }}:${{ github.ref_name }}
           context: .
           push: true
