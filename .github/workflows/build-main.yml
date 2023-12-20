@@ -3,8 +3,13 @@ name: Build main
 on:
   push:
     paths:
-      - main.py
-      - requirements.txt
+      - 'main.py'
+      - 'requirements.txt'
+  pull_request:
+    paths:
+      - 'main.py'
+      - 'requirements.txt'
+  workflow_dispatch:
 
 jobs:
   build:
