@@ -29,10 +29,18 @@ jobs:
       - name: Configure Docker using GCLOUD
         run: gcloud auth configure-docker europe-west1-docker.pkg.dev
 
+      - name: Convert repository name to lowercase
+        id: to_lower
+        run: echo "::set-output name=repository::${{ github.repository | lower }}"
+
+      - name: Convert ref_name to lowercase
+        id: ref_to_lower
+        run: echo "::set-output name=ref_name::${{ github.ref | replace('refs/tags/', '') | lower }}"
+
       - name: Build and push Docker images
         uses: docker/build-push-action@v3.3.1
         with:
           file: Dockerfile
-          tags: europe-west1-docker.pkg.dev/esirem/esirem/4A_ilc/benameur_nguyen/cicd_project:${{ github.ref_name }}
+          tags: europe-west1-docker.pkg.dev/esirem/esirem/4A_ilc/benameur_nguyen/cicd_project:${{ steps.ref_to_lower.outputs.ref_name }}
           context: .
           push: true
