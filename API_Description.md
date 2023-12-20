@@ -2,7 +2,7 @@
 
 This is a Flask-based API for managing events. It provides endpoints for creating events, getting event details, adding participants to events, and more.
 The API is the main.py file.
-All request other than GET will be typed on powershell.
+All request other than GET will be typed on powershell because curl method do not work for me.
 
 ## How to Run
 
@@ -72,6 +72,7 @@ All request other than GET will be typed on powershell.
 
 - **Endpoint:** `/events/<participant>`
 - **Method:** `GET`
+- **Exemple:** `/events/John`
 - **Response:**
   ```json
   [
@@ -85,6 +86,9 @@ All request other than GET will be typed on powershell.
     ...
   ]
   ```
+
+  In this code, firstly i filtered events so that only those which have the participant is taken.
+  Then i sorted them by date.
 
 ### 4. Add Participant to an Event
 
@@ -128,6 +132,7 @@ All request other than GET will be typed on powershell.
 
 - **Endpoint:** `/total-time/<participant>`
 - **Method:** `GET`
+- - **Exemple:** `/total-time/John`
 - **Response:**
   ```json
   {
@@ -137,11 +142,13 @@ All request other than GET will be typed on powershell.
     "total_time_month": 14400
   }
   ```
-
+I made 3 separates variables so they do not depend on each other so it minimize the risk of a problem to occur.   
+I also choose to let the date in timestamp to keep things simpler to use.
 ### 7. Get Time Remaining Before a Date
 
 - **Endpoint:** `/time-remaining`
 - **Method:** `GET`
+- - **Exemple:** `/time-remaining/1703106336`
 - **Query Parameter:**
   - `target_timestamp`: Target timestamp to calculate time remaining
 - **Response:**
@@ -151,6 +158,8 @@ All request other than GET will be typed on powershell.
     "time_remaining_seconds": 3600
   }
   ```
+
+  I choose to let the date in timestamp to keep things simpler to use.
 
 
 
