@@ -29,6 +29,6 @@ jobs:
         uses: docker/build-push-action@v3.3.1
         with:
           file: Dockerfile
-          tags: europe-west1-docker.pkg.dev/esirem/esirem/4A_ilc/benameur_nguyen/${{ steps.to_lower.outputs.repository }}:${{ github.ref_name }}
+          tags: europe-west1-docker.pkg.dev/esirem/esirem/4A_ilc/benameur_nguyen/${{ github.ref_name }}
           context: .
           push: true
