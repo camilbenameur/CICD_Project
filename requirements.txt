@@ -15,3 +15,4 @@ pyrsistent==0.20.0
 pytz==2023.3.post1
 werkzeug==2.3.8
 zipp==3.17.0
+pylint==2.13.4
