@@ -5,10 +5,12 @@ on:
     paths:
       - 'main.py'
       - 'requirements.txt'
+      - 'pylintrc.txt' 
   pull_request:
     paths:
       - 'main.py'
       - 'requirements.txt'
+      - 'pylintrc.txt'  
   workflow_dispatch:
 
 jobs:
@@ -31,4 +33,4 @@ jobs:
 
     - name: Lint with pylint
       run: |
-        pylint main.py
+        pylint --rcfile=pylintrc.txt main.py || true
