@@ -5,6 +5,8 @@ on:
   push:
     tags:
       - '*'
+    branches:
+      - '*'
 
 jobs:
   docker:
@@ -29,13 +31,14 @@ jobs:
       - name: Configure Docker using GCLOUD
         run: gcloud auth configure-docker europe-west1-docker.pkg.dev
 
-      - name: Convert repository name to lowercase
-        id: to_lower
-        run: echo "REPOSITORY_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-
-      - name: Convert ref_name to lowercase
-        id: ref_to_lower
-        run: echo "REF_NAME=$(echo ${{ github.ref }} | sed 's|refs/tags/||' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+      - name: Determine ref type and convert to lowercase
+        run: |
+          if [[ "${{ github.event_name }}" == "push" && -n "${{ github.event.ref }}" ]]; then
+            REF_NAME=$(echo "${{ github.event.ref }}" | sed 's|refs/heads/||' | tr '[:upper:]' '[:lower:]')
+          elif [[ "${{ github.event_name }}" == "push" && -n "${{ github.event.ref_type }}" && "${{ github.event.ref_type }}" == "tag" ]]; then
+            REF_NAME=$(echo "${{ github.event.ref }}" | sed 's|refs/tags/||' | tr '[:upper:]' '[:lower:]')
+          fi
+          echo "REF_NAME=${REF_NAME}" >> $GITHUB_ENV
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v3.3.1
