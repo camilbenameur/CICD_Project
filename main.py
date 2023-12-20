@@ -99,8 +99,10 @@ def get_next_event():
 #         return jsonify({'message': 'Données importées avec succès'}), 200
 
 #     except Exception as e:
-#         return jsonify({'message': f'Erreur lors de l\'importation du fichier CSV : {str(e)}'}), 500
+#         return jsonify({'message': f'Erreur lors de l\'importation du fichier CSV : {str(e)}'})
 
+
+# Connaître le temps total passé pour une période donnée
 @app.route('/total-time/<participant>', methods=['GET'])
 def get_total_time(participant):
     try:
@@ -136,8 +138,27 @@ def get_total_time(participant):
 
     except Exception as e:
         return jsonify({'message': f'Erreur lors de la récupération du temps total : {str(e)}'})
+    
 
+#Connaître le temps restant avant la date choisie (en secondes)
+@app.route('/time-remaining', methods=['GET'])
+def get_time_remaining():
+        
+    target_timestamp_str = request.args.get('target_timestamp')
 
+    target_timestamp = int(target_timestamp_str)
+    current_timestamp = int(datetime.timestamp(datetime.now()))
+
+    time_remaining_seconds = current_timestamp - target_timestamp 
+
+    result = {
+        'target_timestamp': target_timestamp,
+        'time_remaining_seconds': time_remaining_seconds
+    }
+
+    return jsonify(result)
+
+    
 # Nouvelle route pour la racine ("/")
 @app.route('/')
 def home():
