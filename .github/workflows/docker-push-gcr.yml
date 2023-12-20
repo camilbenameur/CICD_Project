@@ -35,6 +35,6 @@ jobs:
         uses: docker/build-push-action@v3.3.1
         with:
           file: Dockerfile
-          tags: europe-west1-docker.pkg.dev/camilbenameur/cicd_project/4A_ilc/benameur_nguyen/cicd_project::${{ github.ref_name }}
+          tags: europe-west1-docker.pkg.dev/esirem/esirem/4a_ilc/benameur_nguyen/${{ github.repository }}:${{ github.ref_name }}          
           context: .
           push: true
