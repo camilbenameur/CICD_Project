@@ -1,9 +1,6 @@
-## Auteurs
+## Autors (ILC)
 - [Camil BENAMEUR](https://github.com/camilbenameur)
 - [Lionel NGUYEN](https://github.com/LionelKhoi)
-
-## Spécialité
-- Spécialité : ILC (Ingénierie Logicielle et des Connaissances)
 
 # Summary: ESIREM - 4A - ILC CI/CD Project
 
@@ -69,3 +66,55 @@ For each feature:
 6. Release with version tag.
 7. Add a route to calculate time remaining before a date or event.
 8. Release with version tag.
+
+## Used technologies
+
+1. **Flask:**
+   - *Usage:* Framework for building the REST API.
+
+2. **Python:**
+   - *Usage:* Primary programming language for implementing the API and related functionalities.
+
+3. **GitHub:**
+   - *Usage:* Version control and collaborative development.
+   
+4. **GitHub Actions:**
+   - *Usage:* Automation of CI/CD workflows, including building Docker images and deploying releases.
+
+5. **Docker:**
+   - *Usage:* Containerization of the Flask application.
+   
+6. **Google Container Registry (GCR):**
+   - *Usage:* Hosting and managing Docker images.
+
+7. **Swagger:**
+   - *Usage:* API documentation and specification.
+
+8. **Markdown:**
+   - *Usage:* Documentation format for README files.
+
+9. **CSV:**
+   - *Usage:* Data import/export, particularly for importing data from CSV files.
+
+10. **Google Cloud Platform (GCP):**
+    - *Usage:* Deployment and hosting of Docker images.
+
+11. **Semantic Versioning (SemVer):**
+    - *Usage:* Versioning for releases.
+
+12. **Google Cloud SDK:**
+    - *Usage:* Set up and configure Docker to use GCP.
+
+13. **Google Cloud Auth:**
+    - *Usage:* Authenticate GitHub Actions workflow with GCP's SDK.
+
+14. **Google Cloud JSON:**
+    - *Usage:* Provide authentication credentials for GCP.
+
+15. **Linting tools (e.g., Pylint):**
+    - *Usage:* Ensure code quality and adherence to coding standards.
+
+16. **Linux (Ubuntu):**
+    - *Usage:* Operating system for GitHub Actions runners.
+
+These technologies collectively contribute to building, testing, documenting, and deploying the Flask API in a collaborative and automated manner.
