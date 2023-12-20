@@ -33,13 +33,13 @@ All request other than GET will be typed on powershell.
     "name" = "Example"
     "participants" = @("John","Jack")
     "description" = "Description"
-} | ConvertTo-Json
+  } | ConvertTo-Json
 
-$headers = @{
+  $headers = @{
     "Content-Type" = "application/json"
-}
+  }
 
-Invoke-RestMethod -Uri "http://127.0.0.1:5000/events" -Method Post -Headers $headers -Body $body
+  Invoke-RestMethod -Uri "http://127.0.0.1:5000/events" -Method Post -Headers $headers -Body $body
 
   }
   ```
@@ -92,17 +92,15 @@ Invoke-RestMethod -Uri "http://127.0.0.1:5000/events" -Method Post -Headers $hea
 - **Method:** `PUT`
 - **Request Body:**
   ```powershell
-  {
-    $body = @{
+  $body = @{
     "participant" = "Jean"
-} | ConvertTo-Json
+  } | ConvertTo-Json
 
-$headers = @{
+  $headers = @{
     "Content-Type" = "application/json"
-}
-
-Invoke-RestMethod -Uri "http://127.0.0.1:5000/events/Example/add-participant" -Method Put -Headers $headers -Body $body
   }
+
+  Invoke-RestMethod -Uri "http://127.0.0.1:5000/events/Example/add-participant" -Method Put -Headers $headers -Body $body
   ```
 - **Response:**
   ```json
@@ -153,3 +151,10 @@ Invoke-RestMethod -Uri "http://127.0.0.1:5000/events/Example/add-participant" -M
     "time_remaining_seconds": 3600
   }
   ```
+
+
+
+
+
+
+
