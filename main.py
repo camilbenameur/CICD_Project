@@ -14,10 +14,12 @@ if __name__ == '__main__':
 def create_event():
     data = request.get_json()
     event = {
-        'timestamp': data['timestamp'],
-        'name': data['name'],
-        'participants': data['participants']
-    }
+    'timestamp': data['timestamp'],
+    'duration': data['duration'],
+    'participants': data['participants'],
+    'name': data['name'],
+      
+}
     events_db.append(event)
     return jsonify({'message': 'Évènement créé avec succès'}), 201
 
@@ -60,42 +62,42 @@ def get_next_event():
 
 
 # E6 - Importer des données depuis un fichier csv
-@app.route('/import-csv', methods=['POST'])
-def import_csv():
+# @app.route('/import-csv', methods=['POST'])
+# def import_csv():
     
-    if 'file' not in request.files:
-        return jsonify({'message': 'Aucun fichier trouvé'}), 400
+#     if 'file' not in request.files:
+#         return jsonify({'message': 'Aucun fichier trouvé'}), 400
 
-    file = request.files['file']
-
-    
-    if file.filename == '':
-        return jsonify({'message': 'Aucun fichier sélectionné'}), 400
+#     file = request.files['file']
 
     
-    if not file.filename.endswith('.csv'):
-        return jsonify({'message': 'Le fichier doit être au format CSV'}), 400
+#     if file.filename == '':
+#         return jsonify({'message': 'Aucun fichier sélectionné'}), 400
 
-    try:
-        # Lisez le fichier CSV
-        csv_data = file.read()
+    
+#     if not file.filename.endswith('.csv'):
+#         return jsonify({'message': 'Le fichier doit être au format CSV'}), 400
 
-        # Utilisez le module CSV pour traiter les données
-        csv_reader = csv.reader(csv_data.splitlines())
+#     try:
+#         # Lisez le fichier CSV
+#         csv_data = file.read()
+
+#         # Utilisez le module CSV pour traiter les données
+#         csv_reader = csv.reader(csv_data.splitlines())
         
-        for row in csv_reader:
+#         for row in csv_reader:
             
-            event = {
-                'timestamp': row[0],
-                'name': row[1],
-                'participants': row[2].split(',')
-            }
-            events_db.append(event)
+#             event = {
+#                 'timestamp': row[0],
+#                 'name': row[1],
+#                 'participants': row[2].split(',')
+#             }
+#             events_db.append(event)
 
-        return jsonify({'message': 'Données importées avec succès'}), 200
+#         return jsonify({'message': 'Données importées avec succès'}), 200
 
-    except Exception as e:
-        return jsonify({'message': f'Erreur lors de l\'importation du fichier CSV : {str(e)}'}), 500
+#     except Exception as e:
+#         return jsonify({'message': f'Erreur lors de l\'importation du fichier CSV : {str(e)}'}), 500
 
 
 # Nouvelle route pour la racine ("/")
