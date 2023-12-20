@@ -31,21 +31,10 @@ jobs:
       - name: Configure Docker using GCLOUD
         run: gcloud auth configure-docker europe-west1-docker.pkg.dev
 
-      - name: Determine ref type and convert to lowercase
-        run: |
-          if [[ "${{ github.event_name }}" == "push" && -n "${{ github.event.ref }}" ]]; then
-            REF_NAME=$(echo "${{ github.event.ref }}" | sed 's|refs/heads/||' | tr '[:upper:]' '[:lower:]')
-          elif [[ "${{ github.event_name }}" == "push" && -n "${{ github.event.ref_type }}" && "${{ github.event.ref_type }}" == "tag" ]]; then
-            REF_NAME=$(echo "${{ github.event.ref }}" | sed 's|refs/tags/||' | tr '[:upper:]' '[:lower:]')
-          fi
-          REPO_NAME=$(echo "${{ github.repository }}" | awk '{print tolower($0)}')
-          echo "::set-output name=REF_NAME::${REF_NAME}"
-          echo "::set-output name=REPO_NAME::${REPO_NAME}"
-
       - name: Build and push Docker images
         uses: docker/build-push-action@v3.3.1
         with:
           file: Dockerfile
-          tags: europe-west1-docker.pkg.dev/${{ needs.docker.outputs.REPO_NAME }}/4A_ilc/benameur_nguyen/cicd_project:${{ needs.docker.outputs.REF_NAME }}
+          tags: europe-west1-docker.pkg.dev/camilbenameur/cicd_project/4A_ilc/benameur_nguyen/cicd_project::${{ github.ref_name }}
           context: .
           push: true
