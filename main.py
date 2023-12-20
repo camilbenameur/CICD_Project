@@ -18,7 +18,8 @@ def create_event():
     'duration': data['duration'],
     'participants': data['participants'],
     'name': data['name'],
-      
+    'description': data['description']
+    
 }
     events_db.append(event)
     return jsonify({'message': 'Évènement créé avec succès'}), 201
