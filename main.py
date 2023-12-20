@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import csv
+from datetime import datetime, timedelta
 app = Flask(__name__)
 
 
@@ -99,6 +100,42 @@ def get_next_event():
 
 #     except Exception as e:
 #         return jsonify({'message': f'Erreur lors de l\'importation du fichier CSV : {str(e)}'}), 500
+
+@app.route('/total-time/<participant>', methods=['GET'])
+def get_total_time(participant):
+    try:
+        current_timestamp = int(datetime.timestamp(datetime.now()))
+
+        total_time_day = 0
+        total_time_seven_days = 0
+        total_time_month = 0
+
+        for event in events_db:
+            if participant in event['participants']:
+                event_timestamp = event['timestamp']
+                event_duration = event['duration']
+
+                time_difference = event_timestamp - current_timestamp 
+                
+
+                if time_difference <= 86400: 
+                    total_time_day += event_duration
+                if 0 <= time_difference < 604800:  
+                    total_time_seven_days += event_duration
+                if 0 <= time_difference <= 2592000:  
+                    total_time_month += event_duration
+
+        result = {
+            'participant': participant,
+            'total_time_day': total_time_day,
+            'total_time_seven_days': total_time_seven_days,
+            'total_time_month': total_time_month
+        }
+
+        return jsonify(result)
+
+    except Exception as e:
+        return jsonify({'message': f'Erreur lors de la récupération du temps total : {str(e)}'})
 
 
 # Nouvelle route pour la racine ("/")
